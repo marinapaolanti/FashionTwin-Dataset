@@ -1,35 +1,31 @@
 <div align="center">
 
 # FashionTwin
-### A Holistic Benchmark for the Perception of AI-Generated Images in Fashion
+### A Paired Dataset of Real and AI-Generated Fashion Product Images
 
-[![Paper](https://img.shields.io/badge/Paper-ACMMM%202026-b31b1b.svg)](#citation)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](#license)
 [![Images](https://img.shields.io/badge/Images-3%2C286%20(paired)-blue.svg)](#dataset-statistics)
 [![Classes](https://img.shields.io/badge/Classes-54-blue.svg)](#dataset-statistics)
 
-[Paper](#citation) • [Dataset Statistics](#dataset-statistics) • [Download](#download) • [Dataset Structure](#dataset-structure) • [Baselines](#baselines-and-results) • [Citation](#citation)
+[Dataset Statistics](#dataset-statistics) • [Download](#download) • [Dataset Structure](#dataset-structure) • [Annotation Protocol](#perceptual-annotation-protocol) • [License](#license)
 
 </div>
+
+> **Note on image previews:** if the figures below don't render on your Git host, make sure the `assets/` folder was committed/pushed alongside this `README.md` — GitHub resolves `assets/xxx.png` as a path relative to the README's location in the repo, so the images only show up once that folder actually exists at the same level. If you renamed or moved the folder, update the paths below to match.
 
 ---
 
 ## Overview
 
-**FashionTwin** is a paired benchmark of **1,643 real fashion product images** and their **AI-generated counterparts**, built to study how well both machines and humans can tell real e-commerce photography apart from synthetic imagery — and, more importantly, *how differently the two are perceived*.
+**FashionTwin** is a paired benchmark of **1,643 real fashion product images** and their **AI-generated counterparts**, built to study the visual and perceptual differences between real e-commerce photography and synthetic fashion imagery.
 
-Every real image comes with structured metadata (macro-category, fine-grained class, textual highlights, material composition) that was used, via a standardised prompting protocol, to generate a paired synthetic version with a text-to-image model. Each pair is then run through two complementary evaluations:
-
-- an **explainable automatic detector** ([FakeVLM](https://arxiv.org/abs/2503.14905)), which predicts real/AI and produces a natural-language explanation of the visual cues behind its decision;
-- a **human perception study** with 50 non-expert participants, who rate every image on six perceptual dimensions grounded in empirical aesthetics — **beauty, complexity, realism, perceived effort, authenticity, and interest** — following the framework proposed by [Bianchi et al. (2025)](#citation).
-
-FashionTwin is designed to move the conversation beyond binary real/fake classification, toward a richer, human-centred understanding of how synthetic fashion imagery is experienced.
+Every real image comes with structured metadata — macro-category, fine-grained class, textual highlights, and material composition — which was used, through a standardised prompting protocol, to generate a paired synthetic version with a text-to-image model. The generation prompts deliberately exclude brand references, people, and environmental scenes, so that each pair can be compared on visual and material attributes alone.
 
 <p align="center">
-  <img src="assets/workflow.png" width="100%" alt="FashionTwin methodological workflow">
+  <img src="assets/workflow.png" width="100%" alt="FashionTwin dataset construction workflow">
 </p>
 
-<p align="center"><sub><b>Figure 1.</b> The FashionTwin pipeline: real–AI-generated pairs with structured metadata are analysed through FakeVLM (automatic detection + explanation) and a human perception questionnaire.</sub></p>
+<p align="center"><sub><b>Figure 1.</b> How each pair is built: a real product image and its metadata are turned into a standardised prompt, which generates the AI counterpart.</sub></p>
 
 ---
 
@@ -50,7 +46,13 @@ FashionTwin contains **1,643 real product images**, organised into **5 macro-cat
   <img src="assets/dataset_overview.png" width="100%" alt="FashionTwin dataset overview: class distribution and example pair">
 </p>
 
-<p align="center"><sub><b>Figure 2.</b> (a) Distribution of the 1,643 real images across all 54 fine-grained classes and 5 macro-categories. (b) Example of a real–AI-generated pair sharing the same category, class, highlights and material composition.</sub></p>
+<p align="center"><sub><b>Figure 2.</b> (a) Distribution of the 1,643 real images across all 54 fine-grained classes and 5 macro-categories. (b) Example of a real–AI-generated pair sharing the same category, class, highlights, and material composition.</sub></p>
+
+<p align="center">
+  <img src="assets/class_distribution_panels.png" width="100%" alt="Per-class image counts within each macro-category">
+</p>
+
+<p align="center"><sub><b>Figure 3.</b> Per-class image counts within each of the five macro-categories.</sub></p>
 
 Each real image is annotated with the following metadata fields, which are also the fields used to build the generation prompt:
 
@@ -75,8 +77,6 @@ Each real image is annotated with the following metadata fields, which are also 
 | Real images (1,643) | TBD | [`download`](#) |
 | AI-generated images (1,643) | TBD | [`download`](#) |
 | Metadata (`metadata.csv`) | TBD | [`download`](#) |
-| FakeVLM outputs (`fakevlm_results.csv`) | TBD | [`download`](#) |
-| Human perception ratings (`perception_ratings.csv`) | TBD | [`download`](#) |
 
 ```bash
 # Example: once hosted, a simple download script could look like this
@@ -107,55 +107,16 @@ FashionTwin/
 │       ├── bags/
 │       └── shoes/
 ├── metadata.csv
-├── fakevlm_results.csv
-├── perception_ratings.csv
 └── README.md
 ```
 
-`metadata.csv` follows the schema described in [Dataset Statistics](#dataset-statistics); `image_id` and `pair_id` are the keys used to join real images, generated images, FakeVLM outputs, and perception ratings.
+`metadata.csv` follows the schema described in [Dataset Statistics](#dataset-statistics); `image_id` and `pair_id` are the keys used to join real images with their generated counterparts.
 
 ---
 
-## Baselines and Results
+## Perceptual Annotation Protocol
 
-### FakeVLM automatic detection (zero-shot)
-
-FakeVLM ([Wen et al.](#citation)) was applied in a zero-shot setting (no fine-tuning on FashionTwin) to test the transferability of a pretrained synthetic-image detector to fashion product photography.
-
-| Category | Correct | Total | Accuracy |
-|---|---:|---:|---:|
-| Real | 232 | 826 | 0.281 |
-| AI-generated | 51 | 56 | 0.911 |
-| **Overall** | **283** | **882** | **0.321** |
-
-FakeVLM is highly sensitive to AI-generated images but tends to misclassify real product photos as synthetic — plausibly because studio e-commerce photography shares visual traits (clean backgrounds, controlled lighting, smooth surfaces) with generative outputs. See the paper for a discussion of the textual artefact explanations produced alongside each prediction.
-
-### Human perception study (N = 50)
-
-Participants rated real and AI-generated images on six 7-point Likert-scale dimensions.
-
-<p align="center">
-  <img src="assets/perceptual_scores_comparison.png" width="75%" alt="Human perception ratings: real vs AI-generated">
-</p>
-
-<p align="center"><sub><b>Figure 3.</b> Mean perceptual ratings (± SD) for real vs. AI-generated images across the six FashionTwin dimensions.</sub></p>
-
-| Dimension | Real images | AI-generated images |
-|---|---:|---:|
-| Beauty | 4.92 ± 1.21 | **5.18 ± 1.14** |
-| Complexity | 4.37 ± 1.30 | **4.81 ± 1.22** |
-| Realism | **5.64 ± 1.05** | 4.76 ± 1.31 |
-| Perceived effort | 4.58 ± 1.28 | **5.02 ± 1.19** |
-| Authenticity | **5.41 ± 1.12** | 4.32 ± 1.36 |
-| Interest | 4.73 ± 1.25 | **5.07 ± 1.18** |
-
-AI-generated images were rated as slightly more beautiful, complex, effortful, and interesting — while real images were rated as more realistic and authentic. Human real/AI classification accuracy was **64.8%** overall (68.4% on real images, 61.2% on AI-generated images), confirming the task is non-trivial even for human observers.
-
----
-
-## Human Perception Questionnaire
-
-The full questionnaire administered to participants (Table 2 in the paper) is reproduced here for reproducibility:
+Alongside the images, FashionTwin includes an optional set of human perceptual ratings collected for a subset of the images, using a questionnaire grounded in empirical aesthetics. Each image can be rated on six 7-point Likert-scale dimensions:
 
 | Construct | Question | Response scale |
 |---|---|---|
@@ -168,6 +129,8 @@ The full questionnaire administered to participants (Table 2 in the paper) is re
 | Authenticity | How authentic does this image appear? | 1 (not authentic) – 7 (very authentic) |
 | Interest | How interesting do you find this image? | 1 (not interesting) – 7 (very interesting) |
 | Qualitative cues | Which visual elements influenced your real/AI judgment? | Open-ended answer |
+
+This protocol is not exclusive to FashionTwin — it can be reused to collect comparable ratings on other real/AI-generated image sets.
 
 ---
 
@@ -183,14 +146,14 @@ row = metadata.iloc[0]
 real_img = Image.open(f"data/real/{row.macro_category.lower()}/{row.image_id}.jpg")
 gen_img  = Image.open(f"data/generated/{row.macro_category.lower()}/{row.image_id}.jpg")
 
-print(row.class_, row.highlights, row.composition)
+print(row['class'], row.highlights, row.composition)
 ```
 
 ---
 
 ## Ethical Considerations
 
-- Real images were sourced from a public online fashion catalogue for research purposes; brand-identifying references (logos, brand names) were deliberately excluded from the generation prompts to keep the comparison focused on visual/material attributes rather than brand identity.
+- Real images were sourced from a public online fashion catalogue for research purposes; brand-identifying references (logos, brand names) were deliberately excluded from the generation prompts to keep the comparison focused on visual and material attributes rather than brand identity.
 - AI-generated images were checked to exclude people, models, and environmental scenes, and are not intended to depict or impersonate any real product, brand, or individual.
 - This dataset is released for **non-commercial research purposes** (synthetic image detection, empirical aesthetics, human-AI perception studies). It must not be used to create or distribute counterfeit product listings.
 
@@ -198,52 +161,16 @@ print(row.class_, row.highlights, row.composition)
 
 ## License
 
-This dataset is released under **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)** — replace with your institution's preferred license before release. The associated code (if any) can be released separately under MIT/Apache-2.0 as appropriate.
+This dataset is released under **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)** — replace with your institution's preferred license before release.
 
 ---
 
-## Citation
+## Acknowledgments
 
-If you use FashionTwin in your research, please cite:
-
-```bibtex
-@inproceedings{fashiontwin2026,
-  title     = {FashionTwin: A Holistic Benchmark for the Perception of AI-Generated Images in Fashion},
-  author    = {Anonymous Author(s)},
-  booktitle = {Proceedings of the ACM International Conference on Multimedia (ACMMM)},
-  year      = {2026},
-  address   = {Rio de Janeiro, Brazil},
-  note      = {Update authors and BibTeX key once the camera-ready version is available}
-}
-```
-
-FashionTwin's perceptual questionnaire builds directly on the framework proposed in:
-
-```bibtex
-@article{bianchi2025creativity,
-  title   = {Creativity and aesthetic evaluation of AI-generated artworks: bridging problems and methods from psychology to AI},
-  author  = {Bianchi, Ivana and Branchini, Erika and Uricchio, Tiberio and Bongelli, Ramona},
-  journal = {Frontiers in Psychology},
-  volume  = {16},
-  pages   = {1648480},
-  year    = {2025}
-}
-```
-
-And the automatic detection baseline uses:
-
-```bibtex
-@article{wen2026fakevlm,
-  title   = {Spot the fake: Large multimodal model-based synthetic image detection with artifact explanation},
-  author  = {Wen, Siwei and Feng, Peilin and Kang, Hengrui and Wen, Zichen and Chen, Yize and Wu, Jiang and He, Conghui and Li, Weijia and others},
-  journal = {Advances in Neural Information Processing Systems},
-  volume  = {38},
-  year    = {2026}
-}
-```
+The perceptual annotation protocol builds on the multidimensional framework for evaluating AI-generated visual products proposed by Bianchi, Branchini, Uricchio and Bongelli (2025), *"Creativity and aesthetic evaluation of AI-generated artworks: bridging problems and methods from psychology to AI"*, Frontiers in Psychology.
 
 ---
 
 ## Contact
 
-For questions about the dataset, please open an issue in this repository, or contact the authors (contact details to be added once the paper is de-anonymized).
+For questions about the dataset, please open an issue in this repository.
