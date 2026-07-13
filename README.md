@@ -70,7 +70,7 @@ Each real image is annotated with the following metadata fields, which are also 
 
 ## Download
 
-**The dataset is currently available upon request.** To request access, please contact **Marina Paolanti** at `[marina.paolanti@unimc.it]`.
+**The dataset is currently available upon request.** To request access, please contact **Prof. Marina Paolanti** at `[marina.paolanti@unimc.it]`.
 
 | Asset | Size | Link |
 |---|---|---|
