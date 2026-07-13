@@ -2,7 +2,7 @@
 
 <img src="assets/logo_horizontal.png" width="480" alt="FashionTwin logo">
 
-### A Paired Dataset of Real and AI-Generated Fashion Product Images
+### A Holistic Benchmark for the Perception of AI-Generated Images in Fashion
 
 [![Paper](https://img.shields.io/badge/Paper-coming%20soon-b31b1b.svg)](#citation)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](#license)
@@ -13,13 +13,11 @@
 
 </div>
 
-> **Note on image previews:** if the figures below don't render on your Git host, make sure the `assets/` folder was committed/pushed alongside this `README.md` — GitHub resolves `assets/xxx.png` as a path relative to the README's location in the repo, so the images only show up once that folder actually exists at the same level. If you renamed or moved the folder, update the paths below to match.
-
 ---
 
 ## Overview
 
-**FashionTwin** is a paired benchmark of **1,643 real fashion product images** and their **AI-generated counterparts**, built to study the visual and perceptual differences between real e-commerce photography and synthetic fashion imagery.
+**FashionTwin** is a paired benchmark of **1,643 real fashion product images** and their **AI-generated counterparts**, built to study the visual and perceptual differences between real and generated fashion images.
 
 Every real image comes with structured metadata — macro-category, fine-grained class, textual highlights, and material composition — which was used, through a standardised prompting protocol, to generate a paired synthetic version with a text-to-image model. The generation prompts deliberately exclude brand references, people, and environmental scenes, so that each pair can be compared on visual and material attributes alone.
 
@@ -72,9 +70,7 @@ Each real image is annotated with the following metadata fields, which are also 
 
 ## Download
 
-**The dataset is currently available upon request.** To request access, please contact **Marina** at `[marina@insert-institution-email.here]`.
-
-> **Note:** replace the placeholders below with your actual hosting links (e.g. Hugging Face Datasets, Zenodo, institutional storage) once the dataset is released publicly.
+**The dataset is currently available upon request.** To request access, please contact **Marina Paolanti** at `[marina.paolanti@unimc.it]`.
 
 | Asset | Size | Link |
 |---|---|---|
@@ -82,14 +78,6 @@ Each real image is annotated with the following metadata fields, which are also 
 | AI-generated images (1,643) | TBD | [`download`](#) |
 | Metadata (`metadata.csv`) | TBD | [`download`](#) |
 
-```bash
-# Example: once hosted, a simple download script could look like this
-wget <REAL_IMAGES_URL> -O fashiontwin_real.zip
-wget <GENERATED_IMAGES_URL> -O fashiontwin_generated.zip
-wget <METADATA_URL> -O metadata.csv
-unzip fashiontwin_real.zip -d data/real
-unzip fashiontwin_generated.zip -d data/generated
-```
 
 ---
 
@@ -165,13 +153,13 @@ print(row['class'], row.highlights, row.composition)
 
 ## License
 
-This dataset is released under **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)** — replace with your institution's preferred license before release.
+This dataset is released under **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)**.
 
 ---
 
 ## Acknowledgments
 
-The perceptual annotation protocol builds on the multidimensional framework for evaluating AI-generated visual products proposed by Bianchi, Branchini, Uricchio and Bongelli (2025), *"Creativity and aesthetic evaluation of AI-generated artworks: bridging problems and methods from psychology to AI"*, Frontiers in Psychology.
+The authors would like to thank the students of the Artificial Intelligence for Communication course within the Master’s Degree Programme in Communication and Digital Cultures of The University of Macerata (UNIMC) for their valuable contribution to the dataset annotation process: Isabella Dagmar Albertini, Cristina Belloni, Martina Delsere, Francesca De Mutiis, Lorella Farruku, Sara Ferrara, Maria Filiaggi, Keila Forti, Alessandra Gajek, Lorenzo Marconi, Giorgio Pagliari, Greta Pascucci, Claudio Peroni, Carlotta Piccione, Beatrice Pisani, Maria Veronica Tulli, and Sara Venanzi.
 
 ---
 
@@ -184,7 +172,7 @@ If you use FashionTwin in your research, please cite it in the meantime as:
 ```bibtex
 @misc{fashiontwin,
   title  = {FashionTwin: A Holistic Benchmark for the Perception of AI-Generated Images in Fashion},
-  author = {[Author names to be added]},
+  author = {Marina Paolanti, Rocco Pietrini, Emanuele Frontoni, Ramona Bongelli},
   year   = {2026},
   note   = {Preprint / paper link to be added upon publication}
 }
@@ -194,5 +182,5 @@ If you use FashionTwin in your research, please cite it in the meantime as:
 
 ## Contact
 
-The dataset is currently available upon request — contact **Marina** at `[marina@insert-institution-email.here]`.
+The dataset is currently available upon request — contact **Prof. Marina Paolanti** at `[marina.paolanti@unimc.it]`.
 For other questions, please open an issue in this repository.
