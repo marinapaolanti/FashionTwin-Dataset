@@ -4,11 +4,12 @@
 
 ### A Paired Dataset of Real and AI-Generated Fashion Product Images
 
+[![Paper](https://img.shields.io/badge/Paper-coming%20soon-b31b1b.svg)](#citation)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](#license)
 [![Images](https://img.shields.io/badge/Images-3%2C286%20(paired)-blue.svg)](#dataset-statistics)
 [![Classes](https://img.shields.io/badge/Classes-54-blue.svg)](#dataset-statistics)
 
-[Dataset Statistics](#dataset-statistics) • [Download](#download) • [Dataset Structure](#dataset-structure) • [Annotation Protocol](#perceptual-annotation-protocol) • [License](#license)
+[Paper](#citation) • [Dataset Statistics](#dataset-statistics) • [Download](#download) • [Dataset Structure](#dataset-structure) • [Annotation Protocol](#perceptual-annotation-protocol) • [License](#license) • [Citation](#citation)
 
 </div>
 
@@ -71,7 +72,9 @@ Each real image is annotated with the following metadata fields, which are also 
 
 ## Download
 
-> **Note:** replace the placeholders below with your actual hosting links (e.g. Hugging Face Datasets, Zenodo, institutional storage) before publishing.
+**The dataset is currently available upon request.** To request access, please contact **Marina** at `[marina@insert-institution-email.here]`.
+
+> **Note:** replace the placeholders below with your actual hosting links (e.g. Hugging Face Datasets, Zenodo, institutional storage) once the dataset is released publicly.
 
 | Asset | Size | Link |
 |---|---|---|
@@ -172,6 +175,24 @@ The perceptual annotation protocol builds on the multidimensional framework for 
 
 ---
 
+## Citation
+
+📄 **Paper:** link coming soon — will be added here once published.
+
+If you use FashionTwin in your research, please cite it in the meantime as:
+
+```bibtex
+@misc{fashiontwin,
+  title  = {FashionTwin: A Holistic Benchmark for the Perception of AI-Generated Images in Fashion},
+  author = {[Author names to be added]},
+  year   = {2026},
+  note   = {Preprint / paper link to be added upon publication}
+}
+```
+
+---
+
 ## Contact
 
-For questions about the dataset, please open an issue in this repository.
+The dataset is currently available upon request — contact **Marina** at `[marina@insert-institution-email.here]`.
+For other questions, please open an issue in this repository.
