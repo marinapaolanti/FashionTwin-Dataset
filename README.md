@@ -1,6 +1,7 @@
 <div align="center">
 
-# FashionTwin
+<img src="assets/logo_horizontal.png" width="480" alt="FashionTwin logo">
+
 ### A Paired Dataset of Real and AI-Generated Fashion Product Images
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](#license)
@@ -43,16 +44,16 @@ FashionTwin contains **1,643 real product images**, organised into **5 macro-cat
 | **Total** | **1,643** | **54** |
 
 <p align="center">
+  <img src="assets/macro_category_distribution.png" width="70%" alt="Distribution of real product images across the five macro-categories">
+</p>
+
+<p align="center"><sub><b>Figure 2.</b> Distribution of the 1,643 real product images across the five macro-categories.</sub></p>
+
+<p align="center">
   <img src="assets/dataset_overview.png" width="100%" alt="FashionTwin dataset overview: class distribution and example pair">
 </p>
 
-<p align="center"><sub><b>Figure 2.</b> (a) Distribution of the 1,643 real images across all 54 fine-grained classes and 5 macro-categories. (b) Example of a real–AI-generated pair sharing the same category, class, highlights, and material composition.</sub></p>
-
-<p align="center">
-  <img src="assets/class_distribution_panels.png" width="100%" alt="Per-class image counts within each macro-category">
-</p>
-
-<p align="center"><sub><b>Figure 3.</b> Per-class image counts within each of the five macro-categories.</sub></p>
+<p align="center"><sub><b>Figure 3.</b> (a) Distribution of the 1,643 real images across all 54 fine-grained classes and 5 macro-categories. (b) Example of a real–AI-generated pair sharing the same category, class, highlights, and material composition.</sub></p>
 
 Each real image is annotated with the following metadata fields, which are also the fields used to build the generation prompt:
 

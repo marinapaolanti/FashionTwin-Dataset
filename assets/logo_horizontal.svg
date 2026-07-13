@@ -1,0 +1,28 @@
+<svg width="900" height="220" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wordmark { font-family: 'Liberation Sans', Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- ============ ICON ============ -->
+  <!-- back tag: dashed outline, "generated" -->
+  <g transform="translate(38,26)">
+    <path d="M 14 62 L 46 26 Q 50 22 56 22 L 106 22 Q 116 22 116 32 L 116 88 Q 116 98 106 98 L 56 98 Q 50 98 46 94 Z"
+          fill="none" stroke="#D85A30" stroke-width="5" stroke-dasharray="9 8" stroke-linejoin="round"/>
+    <circle cx="40" cy="60" r="8.5" fill="none" stroke="#D85A30" stroke-width="5" stroke-dasharray="6 6"/>
+  </g>
+
+  <!-- front tag: solid fill, "real" -->
+  <g transform="translate(14,50)">
+    <path d="M 14 62 L 46 26 Q 50 22 56 22 L 106 22 Q 116 22 116 32 L 116 88 Q 116 98 106 98 L 56 98 Q 50 98 46 94 Z"
+          fill="#1D9E75"/>
+    <circle cx="40" cy="60" r="8.5" fill="#FAFAF8"/>
+  </g>
+
+  <!-- ============ WORDMARK ============ -->
+  <g class="wordmark" transform="translate(200,0)">
+    <text x="0" y="132" font-size="84" font-weight="700" fill="#0C2D48">Fashion<tspan fill="#D85A30">Twin</tspan></text>
+    <text x="3" y="168" font-size="22" font-weight="400" fill="#898781" letter-spacing="1.5">REAL &amp; AI-GENERATED FASHION IMAGE DATASET</text>
+  </g>
+</svg>
